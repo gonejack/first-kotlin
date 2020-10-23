@@ -2,11 +2,11 @@ package modules.woker
 
 import kotlin.concurrent.thread
 
-class Twitter() : WorkerInterface {
+class Twitter() : Worker {
     private var stopping = false;
     private var running = false;
 
-    private fun fetchTweets() {
+    private fun fetch() {
         println("fetch tweets")
     }
 
@@ -15,7 +15,7 @@ class Twitter() : WorkerInterface {
 
         thread {
             while (this.running) {
-                this.fetchTweets()
+                this.fetch()
 
                 Thread.sleep(1000)
 

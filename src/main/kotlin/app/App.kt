@@ -1,11 +1,11 @@
 package app
 
 import modules.woker.Twitter
-import modules.woker.WorkerInterface
+import modules.woker.Worker
 
 class App {
     companion object {
-        private val workers: MutableList<WorkerInterface> = mutableListOf()
+        private val workers: MutableList<Worker> = mutableListOf()
 
         fun init(): Companion {
             workers.add(Twitter())

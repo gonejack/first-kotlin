@@ -1,6 +1,6 @@
 package modules.woker
 
-interface WorkerInterface {
+interface Worker {
     fun start()
     fun stop()
 }

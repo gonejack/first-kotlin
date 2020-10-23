@@ -1,5 +1,9 @@
 package main
 
+import kotlinx.coroutines.*
+import java.util.concurrent.Executors
+import kotlin.coroutines.CoroutineContext
+
 //import app.App
 //import app.Conf
 //
@@ -8,23 +12,27 @@ package main
 //    App.init().start(args)
 //}
 
-import kotlinx.coroutines.*
-
 fun main() {
-    GlobalScope.launch {
-        // launch new coroutine in background and continue
-        delay(1000L) // non-blocking delay for 1 second (default time unit is ms)
-        println("World!") // print after delay
+    runBlocking {
+        launch {
+            println("main ${Thread.currentThread().name}")
+        }
+
+        println("main 1")
+        launch(Dispatchers.Unconfined) {
+            println("Unconfined: ${Thread.currentThread().name}")
+        }
+
+        println("main 2")
+        launch(Dispatchers.Default) {
+            println("default: ${Thread.currentThread().name}")
+        }
+
+        println("main 3")
+        launch(newSingleThreadContext("single thread")) {
+            println("new single thread: ${Thread.currentThread().name}")
+        }
     }
 
-    val first = GlobalScope.launch {
-        delay(100L)
-
-        delay(100L)
-
-        println("abc")
-    }
-
-    println("Hello,") // main thread continues while coroutine is delayed
-    Thread.sleep(2000L) // block main thread for 2 seconds to keep JVM alive
+    println("done")
 }
