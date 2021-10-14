@@ -2,8 +2,6 @@ package app
 
 import com.uchuhimo.konf.Config
 import com.uchuhimo.konf.Item
-import com.uchuhimo.konf.OptionalItem
-import com.uchuhimo.konf.OptionalProperty
 import const.AppConfig
 
 class Conf {

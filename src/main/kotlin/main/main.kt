@@ -1,16 +1,6 @@
 package main
 
 import kotlinx.coroutines.*
-import java.util.concurrent.Executors
-import kotlin.coroutines.CoroutineContext
-
-//import app.App
-//import app.Conf
-//
-//fun main(args: Array<String>) {
-//    Conf.init()
-//    App.init().start(args)
-//}
 
 fun main() {
     runBlocking {
@@ -29,10 +19,36 @@ fun main() {
         }
 
         println("main 3")
+
+        launch {
+            println(this@runBlocking)
+        }
         launch(newSingleThreadContext("single thread")) {
             println("new single thread: ${Thread.currentThread().name}")
         }
     }
 
+    run {
+        println("this is run")
+    }
+
+    runBlocking {
+        val job = launch {
+            abc()
+        }
+
+        job.join()
+    }
+
     println("done")
+}
+
+suspend fun abc() {
+    var qq = ded()
+}
+
+suspend fun ded() {
+    val abc = 200
+    val def = 300
+    println(abc.plus(def))
 }
