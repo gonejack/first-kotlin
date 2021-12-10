@@ -19,7 +19,6 @@ fun main() {
         }
 
         println("main 3")
-
         launch {
             println(this@runBlocking)
         }
